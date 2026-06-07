@@ -48,33 +48,49 @@
                 <p class="text-muted">Inicio de sesión</p>
             </div>
 
-            <form>
+            <form onsubmit="validarLogin(event)">
                 <div class="mb-3">
                     <label class="form-label">Usuario</label>
-                    <input type="text" class="form-control" placeholder="Ingrese su usuario">
+                    <input type="text" id="usuario" class="form-control" placeholder="Ingrese su usuario" required>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">Contraseña</label>
-                    <input type="password" class="form-control" placeholder="Ingrese su contraseña">
+                    <input type="password" id="password" class="form-control" placeholder="Ingrese su contraseña" required>
                 </div>
 
+                <div id="mensaje" class="text-danger mb-3"></div>
+
                 <div class="d-grid mt-4">
-                    <button type="button" class="btn btn-login text-white">
+                    <button type="submit" class="btn btn-login text-white">
                         Ingresar
                     </button>
+                </div>
 
-                    <div class="d-grid mt-3">
-<button type="button" class="btn btn-secondary px-4">
-Registrar
-</button>
-</div>
-
+                <div class="d-grid mt-3">
+                    <button type="button" class="btn btn-secondary px-4">
+                        Registrar
+                    </button>
                 </div>
             </form>
 
         </div>
     </div>
+
+    <script>
+        function validarLogin(event) {
+            event.preventDefault();
+
+            let usuario = document.getElementById("usuario").value;
+            let password = document.getElementById("password").value;
+
+            if (usuario === "admin" && password === "123") {
+                window.location.href = "usuarios.php";
+            } else {
+                document.getElementById("mensaje").innerHTML = "Usuario o contraseña incorrectos";
+            }
+        }
+    </script>
 
 </body>
 </html>
